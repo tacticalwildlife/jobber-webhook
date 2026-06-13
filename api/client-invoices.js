@@ -13,7 +13,9 @@ export default async function handler(req, res) {
             id
             issuedDate
             dueDate
-            amount
+            amounts {
+              total
+            }
             lineItems {
               edges {
                 node {
