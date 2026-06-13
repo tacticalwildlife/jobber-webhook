@@ -14,7 +14,7 @@ export default async function handler(req, res) {
       headers: {
         'Content-Type': 'application/json',
         'Authorization': process.env.JOBBER_ACCESS_TOKEN,
-        'X-JOBBER-GRAPHQL-VERSION': '2023-11-15'
+        'X-JOBBER-GRAPHQL-VERSION': '2026-05-12'
       },
       body: JSON.stringify({ query })
     });
