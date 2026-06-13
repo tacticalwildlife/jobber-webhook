@@ -7,7 +7,7 @@ export default async function handler(req, res) {
 
   const query = `
     query {
-      clients(first: 50, filter: { search: "${name}" }) {
+      clients(first: 100) {
         edges {
           node {
             id
@@ -16,7 +16,16 @@ export default async function handler(req, res) {
             companyName
             emails { address }
             phones { number }
-            addresses { address city state postalCode }
+            clientProperties {
+              edges {
+                node {
+                  address
+                  city
+                  state
+                  postalCode
+                }
+              }
+            }
           }
         }
       }
@@ -40,7 +49,12 @@ export default async function handler(req, res) {
       return res.status(400).json({ errors: data.errors });
     }
     
-    res.status(200).json(data.data.clients.edges);
+    const clients = data.data.clients.edges.filter(e => 
+      e.node.firstName.toLowerCase().includes(name.toLowerCase()) ||
+      e.node.lastName.toLowerCase().includes(name.toLowerCase())
+    );
+    
+    res.status(200).json(clients);
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
