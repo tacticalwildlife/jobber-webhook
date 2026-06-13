@@ -11,19 +11,15 @@ export default async function handler(req, res) {
         edges {
           node {
             id
-            number
-            title
-            issueDate
+            issuedDate
             dueDate
-            total
-            status
+            amount
             lineItems {
               edges {
                 node {
                   description
                   quantity
                   unitPrice
-                  total
                 }
               }
             }
