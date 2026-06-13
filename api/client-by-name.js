@@ -16,16 +16,6 @@ export default async function handler(req, res) {
             companyName
             emails { address }
             phones { number }
-            clientProperties {
-              edges {
-                node {
-                  address
-                  city
-                  state
-                  postalCode
-                }
-              }
-            }
           }
         }
       }
